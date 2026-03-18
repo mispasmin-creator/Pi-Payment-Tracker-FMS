@@ -1,0 +1,5 @@
+{
+  "name": "FMS Dashboard & Entry System",
+  "description": "Financial Management System for tracking PI, payments, partner payouts, and vendor payments with Google Sheets integration.",
+  "requestFramePermissions": []
+}
