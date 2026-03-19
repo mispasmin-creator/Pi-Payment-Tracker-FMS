@@ -126,15 +126,17 @@ const GLOBAL_STYLES = `
   .tag-warn    { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
   .tag-info    { background: var(--brown-50); color: var(--brown-700); border: 1px solid var(--brown-200); }
 
-  :root {
-    --sidebar-w: 256px;
-    --main-ml: 256px;
+  .main-content {
+    margin-left: 256px;
+    transition: margin-left 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .main-content.collapsed {
+    margin-left: 76px;
   }
 
   @media (max-width: 1024px) {
-    :root {
-      --sidebar-w: 100%;
-      --main-ml: 0px !important;
+    .main-content, .main-content.collapsed {
+      margin-left: 0 !important;
     }
   }
 `;
@@ -725,14 +727,11 @@ export default function App() {
         </aside>
 
         {/* ══════════ MAIN CONTENT ══════════ */}
-        <main style={{
+        <main className={`main-content ${isSidebarCollapsed ? 'collapsed' : ''}`} style={{
           flex: 1, display: 'flex', flexDirection: 'column',
-          marginLeft: 'var(--main-ml)',
-          transition: 'margin-left 0.3s cubic-bezier(0.4,0,0.2,1)',
           position: 'relative', zIndex: 30, overflow: 'hidden',
           minWidth: 0,
-          '--main-ml': isSidebarCollapsed ? '76px' : '256px'
-        } as any}>
+        }}>
           {/* Topbar */}
           <header style={{
             height: 68, background: 'rgba(255,255,255,0.88)',
